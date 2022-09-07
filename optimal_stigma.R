@@ -123,12 +123,10 @@ namelist[3] <- "stigma_100_bh_shock_20"
 patterns <- namelist
 
 
-stigma_options_df <- map(patterns[1:2],
+stigma_options_df <- map(patterns[1:3],
                          function(pattern)
                            pattern %>%
                            aggregate_mortgage_leaver_data(n = 10))
-
-stigma_options_df[[3]] <- patterns[3] %>% aggregate_mortgage_leaver_data(n = 5)
 
 stigma_options <- list()
 for (i in seq(1, length(stigma_options_df), by = 1)){
@@ -142,7 +140,11 @@ optimal <-
 
 stigma_value <-
   optimal %>%
-  mutate(optimal_stigma = as.numeric(str_sub(run, 4, 5)) / 100) %>%
+  mutate(optimal_stigma = as.numeric(str_sub(run, 8, 9)),
+         optimal_stigma = if_else(optimal_stigma == 10,
+                                  1,
+                                  optimal_stigma / 100)) %>%
+
   filter(dif == min(dif)) %>%
   dplyr::select(optimal_stigma)
 
