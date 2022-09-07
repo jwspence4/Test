@@ -22,7 +22,7 @@ code_path <-
 source(file.path(code_path, "sarmi_processing_functions.R"))
 
 config <- yaml.load_file(make_path("analysis/config.yml"))
-source("prelim.R")
+source(str_c(config$lab_code, "prelim.R"))
 data_path <- "~/repo/data_cc_simulations/data"
 
 pattern <- "stigma_0_bh_shock_0"

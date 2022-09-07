@@ -4,7 +4,7 @@ source(file.path(code_path, "sarmi_processing_functions.R"))
 source("prelim.R")
 
 out_path <- make_path("analysis/release/structural_model_fortran/")
-chase_stats <- "analysis/input/disclose/latest/gn_strategic_latest.xls"
+chase_stats <- "analysis/input/disclose/latest/gn_strategic_latest_repkit.xls"
 
 gn_data_inc <-
   read_excel(
